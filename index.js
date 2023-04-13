@@ -84,6 +84,25 @@ app.post("/delete", (req, res) => {
   });
 });
 
+app.post("/update", (req, res) => {
+  const { name, email, age, mobile, work, add, desc } = req.body;
+  User.findByIdAndUpdate(
+    { _id: id },
+    {
+      $set: {
+        name,
+        email,
+        age,
+        mobile,
+        work,
+        add,
+        desc,
+      },
+    }
+  );
+  res.status(200).send({ success: true, message: "Post updated successfully" });
+});
+
 app.listen(9002, () => {
   console.log("server listen on 9002");
 });
